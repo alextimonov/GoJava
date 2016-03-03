@@ -1,4 +1,4 @@
-package ua.goit.timonov.hometask_03.musicalinstruments;
+package ua.goit.timonov.hometask_03.musical_instruments;
 
 public class Guitar extends MusicalInstrument {
     @Override

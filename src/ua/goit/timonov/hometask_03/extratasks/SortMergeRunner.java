@@ -3,10 +3,6 @@ package ua.goit.timonov.hometask_03.extratasks;
 import ua.goit.timonov.utils.NumberUtils;
 import java.util.Scanner;
 
-/**
- * Created by Alex on 03.03.2016.
- */
-
 public class SortMergeRunner {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

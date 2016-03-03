@@ -1,4 +1,4 @@
-package ua.goit.timonov.hometask_03.fileSystem;
+package ua.goit.timonov.hometask_03.filesystem;
 
 public class TextFile extends File {
 

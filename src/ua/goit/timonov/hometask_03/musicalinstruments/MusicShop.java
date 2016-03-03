@@ -1,4 +1,4 @@
-package ua.goit.timonov.hometask_03.musicalInstuments;
+package ua.goit.timonov.hometask_03.musicalinstruments;
 
 import java.util.ArrayList;
 import java.util.List;

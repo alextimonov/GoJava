@@ -1,4 +1,4 @@
-package ua.goit.timonov.hometask_03.musical_instruments;
+package ua.goit.timonov.hometask_03.musicalinstruments;
 
 public class MusicalInstrumentRunner {
     public static void main(String[] args) {

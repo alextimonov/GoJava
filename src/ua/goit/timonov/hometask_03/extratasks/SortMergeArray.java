@@ -1,32 +1,47 @@
 package ua.goit.timonov.hometask_03.extratasks;
 
-import ua.goit.timonov.utils.NumberUtils;
-import java.util.Scanner;
+/**
+ * The class with method to sort the array of integer numbers.
+ * Implements method sort(int[] array) with implementation of sortMerge
+ */
+public class SortMergeArray implements ArraySortable {
 
-public class SortMergeRunner {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Input number of elements in Array. ");
-        int nElements = NumberUtils.inputInt(sc);
-        System.out.print("Input max value in Array. ");
-        int max = NumberUtils.inputInt(sc);
-        int[] array = NumberUtils.generateRandomArray(nElements, max);
-        System.out.println("Current array is: ");
-        printArray(array);
-        sortMerge(array, 0, array.length-1);
-        System.out.println("Sorted array is: ");
-        printArray(array);
+    /** Array of int numbers to sort */
+    private int[] array;
+
+    /** =============== Getter & Setter ================= */
+    public int[] getArray() {
+        return array;
     }
 
-    private static int[] copy(int[] array) {
-        int[] resultArray = new int[array.length];
-        for (int i = 0; i < array.length ; i++) {
-            resultArray[i] = array[i];
+    public void setArray(int[] array) {
+        checkArguments(array);
+        this.array = array;
+    }
+
+    // Checks given array if it points to null or if it's empty
+    private void checkArguments(int[] array) {
+        if (array == null) {
+            throw new NullPointerException("Null is given as argument!");
         }
-        return resultArray;
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Empty array is given as argument!");
+        }
     }
 
+    /**
+     * Overridden method sort - merge sort implementation
+     */
+    @Override
+    public void sort() {
+        sortMerge(array, 0, array.length-1);
+    }
+
+    /**
+     * Implementation of sorting array with algo sortMerge
+     */
     private static void sortMerge(int[] array, int leftBound, int rightBound) {
+
         if (leftBound == rightBound) {
             return;
         }
@@ -38,6 +53,7 @@ public class SortMergeRunner {
         }
     }
 
+    // Merges two sorted parts of array (left & right) to one sorted array
     private static void mergeArrays(int[] array, int leftPtr, int rightPtr, int rightBound) {
         int nElements = rightBound - leftPtr + 1;
         int leftStart = leftPtr;
@@ -61,12 +77,5 @@ public class SortMergeRunner {
         for (i = 0; i < nElements; i++) {
             array[leftStart+i] = work[i];
         }
-    }
-
-    private static void printArray(int[] array) {
-        for (int i = 0; i < array.length ; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
     }
 }

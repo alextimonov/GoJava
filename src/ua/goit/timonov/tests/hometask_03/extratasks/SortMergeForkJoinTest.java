@@ -2,19 +2,21 @@ package ua.goit.timonov.tests.hometask_03.extratasks;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.goit.timonov.hometask_03.extratasks.SortMergeArray;
+import ua.goit.timonov.hometask_03.extratasks.SortMergeForkJoin;
 
 import static org.junit.Assert.*;
+import java.util.concurrent.ForkJoinPool;
 
 /**
- * Created by Alex on 07.03.2016.
+ * Class for testing SortMergeForkJoin class (Merge Sort of integer array using ForkJoin Framework)
  */
-public class SortMergeArrayTest {
-    private SortMergeArray arrayToSort;
+public class SortMergeForkJoinTest {
+    private SortMergeForkJoin sortMergeFJ;
+    private ForkJoinPool pool;
 
     @Before
     public void setUp() {
-        arrayToSort = new SortMergeArray();
+        pool = new ForkJoinPool();
     }
 
     @Test
@@ -81,8 +83,8 @@ public class SortMergeArrayTest {
     }
 
     private void makeTrueTest(int[] actual, int[] expected) {
-        arrayToSort.setArray(actual);
-        arrayToSort.sort();
-        assertArrayEquals(expected, arrayToSort.getArray());
+        sortMergeFJ = new SortMergeForkJoin(0, actual.length - 1, actual);
+        pool.invoke(sortMergeFJ);
+        assertArrayEquals(expected, sortMergeFJ.getArray());
     }
 }

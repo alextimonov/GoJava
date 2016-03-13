@@ -9,6 +9,16 @@ public class SortMergeArray implements ArraySortable {
     /** Array of int numbers to sort */
     private int[] array;
 
+    /** Default constructor  */
+    public SortMergeArray() {
+    }
+
+    /** Constructor with ready array */
+    public SortMergeArray(int[] array) {
+        checkArguments(array);
+        this.array = array;
+    }
+
     /** =============== Getter & Setter ================= */
     public int[] getArray() {
         return array;
@@ -20,7 +30,7 @@ public class SortMergeArray implements ArraySortable {
     }
 
     // Checks given array if it points to null or if it's empty
-    private void checkArguments(int[] array) {
+    protected void checkArguments(int[] array) {
         if (array == null) {
             throw new NullPointerException("Null is given as argument!");
         }
@@ -40,8 +50,7 @@ public class SortMergeArray implements ArraySortable {
     /**
      * Implementation of sorting array with algo sortMerge
      */
-    private static void sortMerge(int[] array, int leftBound, int rightBound) {
-
+    private void sortMerge(int[] array, int leftBound, int rightBound) {
         if (leftBound == rightBound) {
             return;
         }
@@ -54,7 +63,7 @@ public class SortMergeArray implements ArraySortable {
     }
 
     // Merges two sorted parts of array (left & right) to one sorted array
-    private static void mergeArrays(int[] array, int leftPtr, int rightPtr, int rightBound) {
+    protected void mergeArrays(int[] array, int leftPtr, int rightPtr, int rightBound) {
         int nElements = rightBound - leftPtr + 1;
         int leftStart = leftPtr;
         int[] work = new int [nElements];

@@ -14,8 +14,8 @@ public class SortMergeForkJoin extends RecursiveAction {
     private int rightBound;
     /** Array of int numbers to sort */
     private int[] array;
-    /** Object of class SortMergeArray with implementation of ordinary merge sort (without ForkJoin) */
-    SortMergeArray sortMergeArray;
+    /** Object of class SortMergeImpl with implementation of ordinary merge sort (without ForkJoin) */
+    SortMergeImpl sortMergeArray;
 
     /** Default constructor  */
     public SortMergeForkJoin() {
@@ -23,14 +23,14 @@ public class SortMergeForkJoin extends RecursiveAction {
 
     /** Constructor with given leftBound, rightBound & array */
     public SortMergeForkJoin(int leftBound, int rightBound, int[] array) {
-        sortMergeArray = new SortMergeArray(array);
+        sortMergeArray = new SortMergeImpl(array);
         checkArguments(array);
         this.leftBound = leftBound;
         this.rightBound = rightBound;
         this.array = array;
     }
 
-    // Checks given array if it points to null or if it's empty using method of SortMergeArray class
+    // Checks given array if it points to null or if it's empty using method of SortMergeImpl class
     private void checkArguments(int[] array) {
         sortMergeArray.checkArguments(array);
     }
@@ -62,7 +62,7 @@ public class SortMergeForkJoin extends RecursiveAction {
         }
     }
 
-    // Merges two sorted parts of array (left & right) to one sorted array using method of SortMergeArray class
+    // Merges two sorted parts of array (left & right) to one sorted array using method of SortMergeImpl class
     private void mergeArrays(int[] array, int leftBound, int middle, int rightBound) {
         sortMergeArray.mergeArrays(array, leftBound, middle, rightBound);
     }

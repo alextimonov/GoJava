@@ -43,21 +43,23 @@ public class SortMergeImpl implements SortingAlgorithm {
      * Overridden method sort - merge sort implementation
      */
     @Override
-    public void sort() {
-        sortMerge(array, 0, array.length-1);
+    public void sort(int[] array) {
+        checkArguments(array);
+        setArray(array);
+        sortMerge(0, array.length-1);
     }
 
     /**
      * Implementation of sorting array with algo sortMerge
      */
-    private void sortMerge(int[] array, int leftBound, int rightBound) {
+    private void sortMerge(int leftBound, int rightBound) {
         if (leftBound == rightBound) {
             return;
         }
         else {
             int middle = (rightBound + leftBound) / 2;
-            sortMerge(array, leftBound, middle);
-            sortMerge(array, middle+1, rightBound);
+            sortMerge(leftBound, middle);
+            sortMerge(middle+1, rightBound);
             mergeArrays(array, leftBound, middle+1, rightBound);
         }
     }

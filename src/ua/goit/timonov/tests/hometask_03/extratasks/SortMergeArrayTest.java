@@ -2,19 +2,16 @@ package ua.goit.timonov.tests.hometask_03.extratasks;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.goit.timonov.hometask_03.extratasks.SortMergeArray;
+import ua.goit.timonov.hometask_03.extratasks.SortMergeImpl;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Alex on 07.03.2016.
- */
 public class SortMergeArrayTest {
-    private SortMergeArray arrayToSort;
+    private SortMergeImpl arrayToSort;
 
     @Before
     public void setUp() {
-        arrayToSort = new SortMergeArray();
+        arrayToSort = new SortMergeImpl();
     }
 
     @Test
@@ -81,8 +78,7 @@ public class SortMergeArrayTest {
     }
 
     private void makeTrueTest(int[] actual, int[] expected) {
-        arrayToSort.setArray(actual);
-        arrayToSort.sort();
+        arrayToSort.sort(actual);
         assertArrayEquals(expected, arrayToSort.getArray());
     }
 }

@@ -1,16 +1,11 @@
 package ua.goit.timonov.hometask_05;
 
-import ua.goit.timonov.hometask_03.extratasks.ArraySortable;
-
-
 /**
  * Class MinMaxElementInArray provides array of int numbers with methods that
  * 1) finds min element;
  * 2) finds max element;
- * 3) sorts array with Quicksort algorithm
- * Implements method sort(int[] array) with implementation of quick sort
  */
-public class MinMaxElementInArray implements ArraySortable {
+public class MinMaxElementInArray {
 
     /** Array of int numbers */
     private int[] array;
@@ -71,56 +66,5 @@ public class MinMaxElementInArray implements ArraySortable {
         if (array.length == 0) {
             throw new IllegalArgumentException("Array's length is 0.");
         }
-    }
-
-    /**
-     * Overridden method sort - quick sort implementation
-     */
-    @Override
-    public void sort() {
-        checkArguments();
-        quickSort(0, array.length - 1);
-    }
-
-    // Implementation of sorting array with recursive algo quicksort
-    private void quickSort(int leftBorder, int rightBorder) {
-        if (leftBorder < rightBorder) {
-            // takes last right element as pivot value
-            int pivot = array[rightBorder];
-            // divides array to two parts due to pivot value, finds position of partition
-            int posPartition = partition(leftBorder, rightBorder, pivot);
-            // recursive invoke of quicksort for array's left part
-            quickSort(leftBorder, posPartition - 1);
-            // recursive invoke of quicksort for array's right part
-            quickSort(posPartition + 1, rightBorder);
-        }
-    }
-
-    // divides array to two parts due to pivot value, returns position of partition
-    private int partition(int leftBorder, int rightBorder, int pivot) {
-        int leftPtr = leftBorder;
-        int rightPtr = rightBorder - 1;
-        boolean wasSwap = true;
-        while (wasSwap)
-        {
-            wasSwap = false;
-            while (array[leftPtr] <= pivot && leftPtr < rightBorder)
-                leftPtr++;
-            while (array[rightPtr] >= pivot && rightPtr > leftBorder)
-                rightPtr--;
-            if (leftPtr < rightPtr  ) {
-                swap(leftPtr, rightPtr);
-                wasSwap = true;
-            }
-        }
-        swap(leftPtr, rightBorder);
-        return leftPtr;
-    }
-
-    // Swaps two elements in array by their indexes
-    private void swap(int index1, int index2) {
-        int temp = array[index1];
-        array[index1] = array[index2];
-        array[index2] = temp;
     }
 }

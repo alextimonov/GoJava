@@ -21,13 +21,19 @@ public class Triangle extends Shape {
     /**
      * Finds the square of triangle by coordinates of tree points of triangle
      * @return      square of triangle
+     * @throws      IllegalStateException if triangle has less than three points
      */
     @Override
     public double findSquare() {
-        double sideAB = pointList.get(0).findDistance(pointList.get(1));
-        double sideBC = pointList.get(1).findDistance(pointList.get(2));
-        double sideAC = pointList.get(0).findDistance(pointList.get(2));
-        double p = (sideAB + sideBC + sideAC) / 2;
-        return Math.sqrt(p * (p - sideAB) * (p - sideBC) * (p - sideAC));
+        try {
+            double sideAB = pointList.get(0).findDistance(pointList.get(1));
+            double sideBC = pointList.get(1).findDistance(pointList.get(2));
+            double sideAC = pointList.get(0).findDistance(pointList.get(2));
+            double p = (sideAB + sideBC + sideAC) / 2;
+            return Math.sqrt(p * (p - sideAB) * (p - sideBC) * (p - sideAC));
+        }
+        catch (IndexOutOfBoundsException e) {
+            throw new IllegalStateException("Despite check in constructor triangle has less than three points!");
+        }
     }
 }

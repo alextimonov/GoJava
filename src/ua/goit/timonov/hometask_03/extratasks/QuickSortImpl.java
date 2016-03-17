@@ -3,16 +3,16 @@ package ua.goit.timonov.hometask_03.extratasks;
 /**
  * Created by Alex on 12.03.2016.
  */
-public class SortQuickSort implements ArraySortable {
+public class QuickSortImpl implements ArraySortable {
     /** Array of int numbers to sort */
     private int[] array;
 
     /** Default constructor  */
-    public SortQuickSort() {
+    public QuickSortImpl() {
     }
 
     /** Constructor with ready array */
-    public SortQuickSort(int[] array) {
+    public QuickSortImpl(int[] array) {
         this.array = array;
     }
 

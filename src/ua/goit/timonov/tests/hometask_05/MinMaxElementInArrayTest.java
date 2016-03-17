@@ -1,31 +1,31 @@
 package ua.goit.timonov.tests.hometask_05;
 
 import org.junit.Test;
-import ua.goit.timonov.hometask_05.TrainingArray;
+import ua.goit.timonov.hometask_05.MinMaxElementInArray;
 
 import static org.junit.Assert.*;
 
 /**
- * Class for testing TrainingArray
+ * Class for testing MinMaxElementInArray
  */
-public class TrainingArrayTest {
-    TrainingArray array;
+public class MinMaxElementInArrayTest {
+    MinMaxElementInArray array;
 
     @Test
     public void testFindMaxElementNormal_1() {
-        array = new TrainingArray(new int[] {3, 5, 1, 7, 4, 6, 8, 5});
+        array = new MinMaxElementInArray(new int[] {3, 5, 1, 7, 4, 6, 8, 5});
         assertEquals(8, array.findMaxElement());
     }
 
     @Test
     public void testFindMaxElementNormal_2() {
-        array = new TrainingArray(new int[] {2, 4, 6, 8, 10});
+        array = new MinMaxElementInArray(new int[] {2, 4, 6, 8, 10});
         assertEquals(10, array.findMaxElement());
     }
 
     @Test
     public void testFindMaxElementBorder_1() {
-        array = new TrainingArray(5);
+        array = new MinMaxElementInArray(5);
         assertEquals(0, array.findMaxElement());
     }
 
@@ -37,25 +37,25 @@ public class TrainingArrayTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testFindMaxElementAbnormal_2() {
-        array = new TrainingArray(0);
+        array = new MinMaxElementInArray(0);
         assertEquals(0, array.findMaxElement());
     }
 
     @Test
     public void testFindMinElementNormal_1() {
-        array = new TrainingArray(new int[] {3, 5, 1, 7, 4, 6, 8, 5});
+        array = new MinMaxElementInArray(new int[] {3, 5, 1, 7, 4, 6, 8, 5});
         assertEquals(1, array.findMinElement());
     }
 
     @Test
     public void testFindMinElementNormal_2() {
-        array = new TrainingArray(new int[] {2, 4, 6, 8, 10});
+        array = new MinMaxElementInArray(new int[] {2, 4, 6, 8, 10});
         assertEquals(2, array.findMinElement());
     }
 
     @Test
     public void testFindMinElementBorder_1() {
-        array = new TrainingArray(5);
+        array = new MinMaxElementInArray(5);
         assertEquals(0, array.findMinElement());
     }
 
@@ -67,7 +67,7 @@ public class TrainingArrayTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testFindMinElementAbnormal_2() {
-        array = new TrainingArray(0);
+        array = new MinMaxElementInArray(0);
         assertEquals(0, array.findMinElement());
     }
 
@@ -128,8 +128,8 @@ public class TrainingArrayTest {
     }
 
     private void makeTrueTest(int[] actual, int[] expected) {
-        array = new TrainingArray(actual);
-        array.sort();
+        array = new MinMaxElementInArray(actual);
+        array.sort(actual);
         assertArrayEquals(expected, array.getArray());
     }
 }

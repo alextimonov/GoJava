@@ -4,17 +4,17 @@ package ua.goit.timonov.hometask_03.extratasks;
  * The class with method to sort the array of integer numbers.
  * Implements method sort(int[] array) with implementation of sortMerge
  */
-public class SortMergeArray implements ArraySortable {
+public class SortMergeImpl implements SortingAlgorithm {
 
     /** Array of int numbers to sort */
     private int[] array;
 
     /** Default constructor  */
-    public SortMergeArray() {
+    public SortMergeImpl() {
     }
 
     /** Constructor with ready array */
-    public SortMergeArray(int[] array) {
+    public SortMergeImpl(int[] array) {
         checkArguments(array);
         this.array = array;
     }

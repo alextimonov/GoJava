@@ -15,7 +15,7 @@ public class SortMergeForkJoin extends RecursiveAction {
     /** Array of int numbers to sort */
     private int[] array;
     /** Object of class SortMergeImpl with implementation of ordinary merge sort (without ForkJoin) */
-    SortMergeImpl sortMergeArray;
+    SortMergeImplArray sortMergeArray;
 
     /** Default constructor  */
     public SortMergeForkJoin() {
@@ -23,7 +23,7 @@ public class SortMergeForkJoin extends RecursiveAction {
 
     /** Constructor with given leftBound, rightBound & array */
     public SortMergeForkJoin(int leftBound, int rightBound, int[] array) {
-        sortMergeArray = new SortMergeImpl(array);
+        sortMergeArray = new SortMergeImplArray(array);
         checkArguments(array);
         this.leftBound = leftBound;
         this.rightBound = rightBound;
@@ -32,7 +32,7 @@ public class SortMergeForkJoin extends RecursiveAction {
 
     // Checks given array if it points to null or if it's empty using method of SortMergeImpl class
     private void checkArguments(int[] array) {
-        sortMergeArray.checkArguments(array);
+//        SortMergeImplArray.checkArguments(array);
     }
 
     /** =============== Getter ================= */

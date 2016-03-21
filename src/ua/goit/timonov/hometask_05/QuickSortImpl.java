@@ -1,7 +1,8 @@
-package ua.goit.timonov.hometask_03.extratasks;
+package ua.goit.timonov.hometask_05;
+
+import ua.goit.timonov.hometask_03.extratasks.SortingAlgorithm;
 
 /**
- * Created by Alex on 12.03.2016.
  * Implements method sort(int[] array) with implementation of quick sort
  */
 public class QuickSortImpl implements SortingAlgorithm {

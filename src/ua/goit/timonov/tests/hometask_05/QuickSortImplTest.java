@@ -6,7 +6,7 @@ import ua.goit.timonov.hometask_05.QuickSortImpl;
 import static org.junit.Assert.*;
 
 /**
- * Created by Alex on 16.03.2016.
+ * Testing class for class SortMergeImpl
  */
 public class QuickSortImplTest {
     QuickSortImpl array;

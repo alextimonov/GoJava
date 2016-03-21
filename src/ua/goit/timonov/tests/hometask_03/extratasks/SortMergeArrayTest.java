@@ -3,15 +3,16 @@ package ua.goit.timonov.tests.hometask_03.extratasks;
 import org.junit.Before;
 import org.junit.Test;
 import ua.goit.timonov.hometask_03.extratasks.SortMergeImpl;
+import ua.goit.timonov.hometask_03.extratasks.SortMergeImplArray;
 
 import static org.junit.Assert.*;
 
 public class SortMergeArrayTest {
-    private SortMergeImpl arrayToSort;
+    private SortMergeImplArray arrayToSort;
 
     @Before
     public void setUp() {
-        arrayToSort = new SortMergeImpl();
+        arrayToSort = new SortMergeImplArray();
     }
 
     @Test

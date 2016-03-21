@@ -70,6 +70,4 @@ public class MinMaxElementInArrayTest {
         array = new MinMaxElementInArray(0);
         assertEquals(0, array.findMinElement());
     }
-
-
 }

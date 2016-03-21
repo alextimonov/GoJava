@@ -1,40 +1,42 @@
 package ua.goit.timonov.hometask_03.extratasks;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * The class with method to sort the array of integer numbers.
  * Implements method sort(int[] array) with implementation of sortMerge
  */
-public class SortMergeImpl implements SortingAlgorithm {
+public class SortMergeImpl <T extends Number> implements SortingAlgorithm {
 
-    /** Array of int numbers to sort */
-    private int[] array;
+    /** List of objects to sort */
+    private List<T> list = new ArrayList<T>();
 
     /** Default constructor  */
     public SortMergeImpl() {
     }
 
-    /** Constructor with ready array */
-    public SortMergeImpl(int[] array) {
-        checkArguments(array);
-        this.array = array;
+    /** Constructor with ready list */
+    public SortMergeImpl(List<T> list) {
+        this.list = list;
     }
 
     /** =============== Getter & Setter ================= */
-    public int[] getArray() {
-        return array;
+    public List<T> getList() {
+        return list;
     }
 
-    public void setArray(int[] array) {
-        checkArguments(array);
-        this.array = array;
+    public void setList(List<T> list) {
+        this.list = list;
     }
 
-    // Checks given array if it points to null or if it's empty
-    protected void checkArguments(int[] array) {
-        if (array == null) {
+    // Checks given list if it points to null or if it's empty
+    private <T> void checkArguments(List<T> list) {
+        if (list == null) {
             throw new NullPointerException("Null is given as argument!");
         }
-        if (array.length == 0) {
+        if (list.size() == 0) {
             throw new IllegalArgumentException("Empty array is given as argument!");
         }
     }
@@ -44,49 +46,79 @@ public class SortMergeImpl implements SortingAlgorithm {
      */
     @Override
     public void sort(int[] array) {
-        checkArguments(array);
-        setArray(array);
-        sortMerge(0, array.length-1);
+        // TODO check array - is it relevant argument
+        for (int i = 0; i < array.length ; i++) {
+            T elem = (T) new Integer(array[i]);
+            list.add(elem);
+        }
+
+        Comparator<T> comparator = new Comparator<T>() {
+            @Override
+            public int compare(T o1, T o2) {
+                return 0;
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                return false;
+            }
+        };
+        sort(list, comparator);
+    }
+
+
+//    @Override
+    public void sort(List<T> list, Comparator<T> comparator) {
+        checkArguments(list);
+        setList(list);
+        sortMerge(0, list.size()-1, comparator);
     }
 
     /**
-     * Implementation of sorting array with algo sortMerge
+     * Implementation of sorting list with algo sortMerge
      */
-    private void sortMerge(int leftBound, int rightBound) {
+    private void sortMerge(int leftBound, int rightBound, Comparator<T> comparator) {
         if (leftBound == rightBound) {
             return;
         }
         else {
             int middle = (rightBound + leftBound) / 2;
-            sortMerge(leftBound, middle);
-            sortMerge(middle+1, rightBound);
-            mergeArrays(array, leftBound, middle+1, rightBound);
+            sortMerge(leftBound, middle, comparator);
+            sortMerge(middle+1, rightBound, comparator);
+            mergeLists(list, leftBound, middle+1, rightBound, comparator);
         }
     }
 
-    // Merges two sorted parts of array (left & right) to one sorted array
-    protected void mergeArrays(int[] array, int leftPtr, int rightPtr, int rightBound) {
+    // Merges two sorted parts of list (left & right) to one sorted list
+    protected  <T extends Number> void mergeLists(List<T> list1, int leftPtr, int rightPtr,
+                                                  int rightBound, Comparator<T> comparator) {
         int nElements = rightBound - leftPtr + 1;
         int leftStart = leftPtr;
-        int[] work = new int [nElements];
+        List<T> work = new ArrayList<T>();
+        List<T> list = new ArrayList<T>();
+        list = list1;
         int leftBound = rightPtr-1;
         int i = 0;
         while (leftPtr <= leftBound && rightPtr <= rightBound) {
-            if (array[leftPtr] < array[rightPtr]) {
-                work[i++] = array[leftPtr++];
+            if ( comparator.compare(list.get(leftPtr), list.get(rightPtr)) < 0 ) {
+                work.add(list.get(leftPtr++));
+                i++;
             }
             else {
-                work[i++] = array[rightPtr++];
+                work.add(list.get(rightPtr++));
             }
         }
         while (leftPtr <= leftBound) {
-            work[i++] = array [leftPtr++];
+            work.add(list.get(leftPtr++));
+            i++;
         }
         while (rightPtr <= rightBound) {
-            work[i++] = array [rightPtr++];
+            work.add(list.get(rightPtr++));
+            i++;
         }
         for (i = 0; i < nElements; i++) {
-            array[leftStart+i] = work[i];
+            list.add(leftStart+i, work.get(i));
+            list.remove(leftStart+i+1);
         }
     }
 }

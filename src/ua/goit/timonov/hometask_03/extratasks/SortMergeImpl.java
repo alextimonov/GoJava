@@ -44,7 +44,7 @@ public class SortMergeImpl <T extends Number> implements SortingAlgorithm {
     /**
      * Overridden method sort - merge sort implementation
      */
-    @Override
+//    @Override
     public void sort(int[] array) {
         // TODO check array - is it relevant argument
         for (int i = 0; i < array.length ; i++) {

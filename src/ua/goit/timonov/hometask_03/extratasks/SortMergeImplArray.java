@@ -47,7 +47,7 @@ public class SortMergeImplArray implements SortingAlgorithm {
     /**
      * Overridden method sort - merge sort implementation
      */
-    @Override
+//    @Override
     public void sort(int[] array) {
         checkArguments(array);
         setArray(array);

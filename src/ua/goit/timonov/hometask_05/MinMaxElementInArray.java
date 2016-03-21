@@ -5,37 +5,16 @@ package ua.goit.timonov.hometask_05;
  */
 public class MinMaxElementInArray {
 
-    /** Array of int numbers */
-    private int[] array;
-
-    /**
-     * Constructor, that creates MinMaxElementInArray by number of elements
-     * @param nElems        number of elements in array
-     */
-    public MinMaxElementInArray(int nElems) {
-        array = new int[nElems];
-    }
-
-    /**
-     * Constructor, that creates MinMaxElementInArray by given array
-     * @param array         array of int numbers
-     */
-    public MinMaxElementInArray(int[] array) {
-        this.array = array;
-        checkArguments();
-    }
-
-    /** =============== Getter ================= */
-    public int[] getArray() {
-        return array;
-    }
+    /** Default constructor that prevents to create an object */
+    private MinMaxElementInArray() {}
 
     /**
      * Finds value of max element in array
-     * @return           value of max element in array
+     * @param array     array if ints
+     * @return          value of max element in array
      */
-    public int findMaxElement() {
-        checkArguments();
+    public static int findMaxElement(int[] array) {
+        checkArguments(array);
         int max = array[0];
         for (int i = 0; i < array.length; i++) {
             if (max < array[i]) max = array[i];
@@ -45,10 +24,11 @@ public class MinMaxElementInArray {
 
     /**
      * Finds value of min element in array
+     * @param array      array of ints
      * @return           value of min element in array
      */
-    public int findMinElement() {
-        checkArguments();
+    public static int findMinElement(int[] array) {
+        checkArguments(array);
         int min = array[0];
         for (int i = 0; i < array.length; i++) {
             if (min > array[i]) min = array[i];
@@ -57,7 +37,7 @@ public class MinMaxElementInArray {
     }
 
     // Checks given array if it points to null or if it's empty
-    private void checkArguments() {
+    private static void checkArguments(int[] array) {
         if (array == null) {
             throw new NullPointerException("Field array equals null.");
         }

@@ -1,6 +1,7 @@
 package ua.goit.timonov.tests.hometask_05;
 
 import org.junit.Test;
+import ua.goit.timonov.hometask_03.extratasks.SortingAlgorithm;
 import ua.goit.timonov.hometask_05.QuickSortImpl;
 
 import static org.junit.Assert.*;
@@ -62,14 +63,13 @@ public class QuickSortImplTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testSortAbnormal_2() {
-        int[] actual = new int[0];
-        int[] expected = new int[0];
+        int[] actual = new int[] {};
+        int[] expected = new int[] {};
         makeTrueTest(actual, expected);
     }
 
     private void makeTrueTest(int[] actual, int[] expected) {
-        array = new QuickSortImpl(actual);
-        array.sort(actual);
-        assertArrayEquals(expected, array.getArray());
+        QuickSortImpl.sort(actual);
+        assertArrayEquals(expected, actual);
     }
 }

@@ -1,9 +1,7 @@
 package ua.goit.timonov.hometask_05;
 
 /**
- * Class MinMaxElementInArray provides array of int numbers with methods that
- * 1) finds min element;
- * 2) finds max element;
+ * Class MinMaxElementInArray provides array of int numbers and finds maximum and minimum elements
  */
 public class MinMaxElementInArray {
 

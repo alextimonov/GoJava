@@ -6,7 +6,7 @@ import ua.goit.timonov.hometask_05.MinMaxElementInArray;
 import static org.junit.Assert.*;
 
 /**
- * Class for testing MinMaxElementInArray
+ * Testing class for class MinMaxElementInArray
  */
 public class MinMaxElementInArrayTest {
     MinMaxElementInArray array;

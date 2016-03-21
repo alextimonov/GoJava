@@ -1,7 +1,7 @@
-package ua.goit.timonov.tests.hometask_03.extratasks;
+package ua.goit.timonov.tests.hometask_05;
 
 import org.junit.Test;
-import ua.goit.timonov.hometask_03.extratasks.QuickSortImpl;
+import ua.goit.timonov.hometask_05.QuickSortImpl;
 
 import static org.junit.Assert.*;
 

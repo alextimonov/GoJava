@@ -8,7 +8,7 @@ import ua.goit.timonov.hometask_03.extratasks.SortingAlgorithm;
 public class QuickSortImpl implements SortingAlgorithm {
 
     /** Default constructor that prevents to create an object */
-    private QuickSortImpl() {}
+    public QuickSortImpl() {}
 
     // Checks given array if it points to null or if it's empty
     private static void checkArguments(int[] array) {
@@ -23,7 +23,7 @@ public class QuickSortImpl implements SortingAlgorithm {
     /**
      * Quick sort implementation
      */
-    public static void sort(int[] array) {
+    public void sort(int[] array) {
         checkArguments(array);
         quickSort(array, 0, array.length - 1);
     }

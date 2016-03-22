@@ -1,7 +1,6 @@
 package ua.goit.timonov.tests.hometask_05;
 
 import org.junit.Test;
-import ua.goit.timonov.hometask_03.extratasks.SortingAlgorithm;
 import ua.goit.timonov.hometask_05.QuickSortImpl;
 
 import static org.junit.Assert.*;
@@ -69,7 +68,8 @@ public class QuickSortImplTest {
     }
 
     private void makeTrueTest(int[] actual, int[] expected) {
-        QuickSortImpl.sort(actual);
+        QuickSortImpl quickSort = new QuickSortImpl();
+        quickSort.sort(actual);
         assertArrayEquals(expected, actual);
     }
 }

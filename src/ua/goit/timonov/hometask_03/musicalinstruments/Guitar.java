@@ -1,9 +1,9 @@
 package ua.goit.timonov.hometask_03.musicalinstruments;
 
 public class Guitar extends MusicalInstrument {
-    public static final String NAME_GUITAR = "guitar";
-
-    private String name;
+    public Guitar() {
+        instrumentType = "guitar";
+    }
 
     @Override
     public void play() {

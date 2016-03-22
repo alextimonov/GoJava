@@ -1,33 +1,31 @@
 package ua.goit.timonov.hometask_03.musicalinstruments;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 /**
 * Class MusicShop provides musical shop with different types of musical instruments.
-*
 */
 public class MusicShop {
     /* String names of stored instruments */
-    private static final String[] instrumentNames = {"piano", "guitar", "trumpet"};
+    public static final String[] INSTRUMENT_NAMES = {"piano", "guitar", "trumpet"};
 
-    /* Map with key - type of musical instrument and value - available quantity of that instrument */
-    private Map <MusicalInstrument, Integer> instrumentsMap;
+    /* List of musical instruments in the shop */
+    private List <MusicalInstrument> instrumentsList;
 
     /* Default constructor */
     public MusicShop() {
-        instrumentsMap = new HashMap<>();
+        instrumentsList = new ArrayList<>();
     }
 
     /**
      * Adds entry of next instrument type
      * @param instrument    type of musicalInstrument to be added
-     * @param nInstruments  its quantity
      */
-    public void addInstrumentToMap(MusicalInstrument instrument, int nInstruments) {
-        instrumentsMap.put(instrument, nInstruments);
+    public void addInstrumentToList(MusicalInstrument instrument) {
+        instrumentsList.add(instrument);
     }
 
     /**
@@ -38,77 +36,9 @@ public class MusicShop {
     */
     public List <MusicalInstrument> prepareInstruments(Map<String, Integer> order)
             throws WrongInstrumentNameException, WrongInstrumentNumberException {
-        int pianosToPrepare = 0;
-        int guitarsToPrepare = 0;
-        int trumpetsToPrepare = 0;
-
         checkOrder(order);
-        for (String instrument : order.keySet()) {
-            switch (instrument) {
-                case "piano":
-                    pianosToPrepare = order.get(instrument);
-                    break;
-                case "guitar":
-                    guitarsToPrepare = order.get(instrument);
-                    break;
-                case "trumpet":
-                    trumpetsToPrepare = order.get(instrument);
-                    break;
-                /*default:
-                    // NOP
-                    break;*/
-            }
-        }
-        checkOnBalances(pianosToPrepare, guitarsToPrepare, trumpetsToPrepare);
-        subtractInstruments(pianosToPrepare, guitarsToPrepare, trumpetsToPrepare);
-        return createListOfPreparedInstuments(pianosToPrepare, guitarsToPrepare, trumpetsToPrepare);
-    }
-
-    // Creates resulting list of prepared instruments
-    private List<MusicalInstrument> createListOfPreparedInstuments
-            (int pianosToPrepare, int guitarsToPrepare, int trumpetsToPrepare) {
-        List<MusicalInstrument> resultList = new ArrayList<>();
-        for (int i = 0; i < pianosToPrepare; i++) {
-            resultList.add(new Piano());
-        }
-        for (int i = 0; i < guitarsToPrepare; i++) {
-            resultList.add(new Guitar());
-        }
-        for (int i = 0; i < trumpetsToPrepare; i++) {
-            resultList.add(new Trumpet());
-        }
-        return resultList;
-    }
-
-    // Subtracts the number of prepared instruments out of current balance
-    private void subtractInstruments(int pianosToPrepare, int guitarsToPrepare, int trumpetsToPrepare) {
-        for (MusicalInstrument instrument : instrumentsMap.keySet()) {
-            if (instrument instanceof Piano) {
-                int newValue = instrumentsMap.get(instrument) - pianosToPrepare;
-                instrumentsMap.replace(instrument, newValue);
-            }
-            if (instrument instanceof Guitar) {
-                int newValue = instrumentsMap.get(instrument) - guitarsToPrepare;
-                instrumentsMap.replace(instrument, newValue);
-            }
-            if (instrument instanceof Trumpet) {
-                int newValue = instrumentsMap.get(instrument) - trumpetsToPrepare;
-                instrumentsMap.replace(instrument, newValue);
-            }
-        }
-    }
-
-    // Checks if there is enough instruments in the shop for each type
-    // throws IllegalArgumentException if there is not
-    private void checkOnBalances(int pianosToPrepare, int guitarsToPrepare, int trumpetsToPrepare) {
-        for (MusicalInstrument instrument : instrumentsMap.keySet()) {
-            if (instrument instanceof Piano && pianosToPrepare > instrumentsMap.get(instrument))
-                throw new IllegalArgumentException("There's not enough pianos!");
-            if (instrument instanceof Guitar && guitarsToPrepare > instrumentsMap.get(instrument))
-                throw new IllegalArgumentException("There's not enough guitars!");
-            if (instrument instanceof Trumpet && trumpetsToPrepare > instrumentsMap.get(instrument))
-                throw new IllegalArgumentException("There's not enough trumpets!");
-        }
+        checkOnBalances(order);
+        return createListOfPreparedInstuments(order);
     }
 
     // Checks order for proper names in String names of instruments in given order.
@@ -127,26 +57,57 @@ public class MusicShop {
         }
     }
 
-    // Checks if given String name is in the instrumentNames
+    // Checks if there is enough instruments in the shop for each type
+    // throws IllegalArgumentException if there is not
+    private void checkOnBalances(Map<String, Integer> order) {
+
+        for (Map.Entry<String, Integer> orderEntry : order.entrySet()) {
+            String instrumentType = orderEntry.getKey();
+            Integer numberOfOrderedInstruments = orderEntry.getValue();
+            int numberOfInstrumentsInShop = 0;
+            for (MusicalInstrument instrument : instrumentsList) {
+                if (instrument.getType().equals(instrumentType)) numberOfInstrumentsInShop++;
+            }
+            if (numberOfInstrumentsInShop < numberOfOrderedInstruments) {
+                throw new IllegalArgumentException("There's not enough " + instrumentType +"s!");
+            }
+        }
+    }
+
+    // Creates resulting list of prepared instruments
+    private List<MusicalInstrument> createListOfPreparedInstuments(Map<String, Integer> order) {
+
+        List<MusicalInstrument> resultList = new ArrayList<>();
+        for (Map.Entry<String, Integer> orderEntry : order.entrySet()) {
+            String instrumentType = orderEntry.getKey();
+            Integer numberOfOrderedInstruments = orderEntry.getValue();
+            int numberOfInstrumentsRemoved = 0;
+            Iterator<MusicalInstrument> iterator = instrumentsList.iterator();
+            while (iterator.hasNext()) {
+                MusicalInstrument instrument = iterator.next();
+                if (instrument.getType().equals(instrumentType) &&
+                        numberOfOrderedInstruments > numberOfInstrumentsRemoved) {
+                    resultList.add(instrument);
+                    iterator.remove();
+                    numberOfInstrumentsRemoved++;
+                }
+            }
+        }
+        return resultList;
+    }
+
+    // Checks if given String name is in the INSTRUMENT_NAMES
     // If it isn't, throws WrongInstrumentNameException
     private void checkInstrumentName(String instrument) throws WrongInstrumentNameException {
         boolean foundProperName = false;
         int i = 0;
-        while (!foundProperName && i < instrumentNames.length) {
-            if (instrument == instrumentNames[i++]) {
+        while (!foundProperName && i < INSTRUMENT_NAMES.length) {
+            if (instrument == INSTRUMENT_NAMES[i++]) {
                 foundProperName = true;
             }
         }
         if (!foundProperName) {
             throw new WrongInstrumentNameException("There is wrong instrument name in the order: " + instrument);
-        }
-    }
-
-    // Outputs current balances of instruments to console
-    public void output() {
-        for (MusicalInstrument instrument : instrumentsMap.keySet()) {
-            instrument.play();
-            System.out.println(instrumentsMap.get(instrument) + " times");
         }
     }
 }

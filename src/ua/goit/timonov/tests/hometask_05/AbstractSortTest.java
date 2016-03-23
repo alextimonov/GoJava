@@ -2,15 +2,13 @@ package ua.goit.timonov.tests.hometask_05;
 
 import org.junit.Test;
 import ua.goit.timonov.hometask_03.extratasks.SortingAlgorithm;
-import ua.goit.timonov.hometask_05.QuickSortImpl;
 
 import static org.junit.Assert.*;
 
 /**
- * Testing class for class SortMergeImpl
+ * Abstract testing class for class, that implements interface SortingAlgorithm
  */
 public abstract class AbstractSortTest {
-    QuickSortImpl array;
     SortingAlgorithm sortingAlgorithm;
 
     public void setSortingAlgorithm(SortingAlgorithm sortingAlgorithm) {
@@ -27,10 +25,8 @@ public abstract class AbstractSortTest {
     @Test
     public void testSortNormal_2() {
         int[] actual =   {5, 4, 3, 2, 1, 0};
-        int[] expected = {1, 0, 2, 3, 4, 5};
+        int[] expected = {0, 1, 2, 3, 4, 5};
         sortingAlgorithm.sort(actual);
-        fail();
-//        makeTrueTest(actual, expected);
     }
 
     @Test
@@ -75,9 +71,15 @@ public abstract class AbstractSortTest {
         makeTrueTest(actual, expected);
     }
 
+    @Test
+    public void testSortFail_1() {
+        int[] actual =   {5, 4, 3, 2, 1, 0};
+        int[] expected = {1, 0, 2, 3, 4, 5};
+        sortingAlgorithm.sort(actual);   //  fail();
+        makeTrueTest(actual, expected);
+    }
+
     private void makeTrueTest(int[] actual, int[] expected) {
-//        QuickSortImpl quickSort = new QuickSortImpl();
-//        quickSort.sort(actual);
         sortingAlgorithm.sort(actual);
         assertArrayEquals(expected, actual);
     }

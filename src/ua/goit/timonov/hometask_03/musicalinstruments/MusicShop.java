@@ -12,7 +12,6 @@ public class MusicShop {
     /* String names of stored instruments */
     public static final String[] INSTRUMENT_NAMES = {"piano", "guitar", "trumpet"};
 
-
     /* List of musical instruments in the shop */
     private List <MusicalInstrument> instrumentsList;
 

@@ -4,11 +4,11 @@ import org.junit.Before;
 import ua.goit.timonov.hometask_05.QuickSortImpl;
 
 /**
- * Created by Alex on 22.03.2016.
+ * Testing class for class QuickSortImpl
  */
 public class QuickSortTest extends AbstractSortTest {
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         super.setSortingAlgorithm(new QuickSortImpl());
 
     }

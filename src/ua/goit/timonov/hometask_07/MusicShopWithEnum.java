@@ -1,17 +1,19 @@
 package ua.goit.timonov.hometask_07;
 
+import ua.goit.timonov.hometask_03.musicalinstruments.WrongInstrumentNameException;
+import ua.goit.timonov.hometask_03.musicalinstruments.WrongInstrumentNumberException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import ua.goit.timonov.hometask_03.musicalinstruments.*;
 
 /**
 * Class MusicShopWithEnum provides musical shop with different types of musical instruments.
 */
 public class MusicShopWithEnum {
     /* List of musical instruments in the shop */
-    private List <MusicalInstrument> instrumentsList;
+    private List <TypesOfInstruments> instrumentsList;
 
     /* Default constructor */
     public MusicShopWithEnum() {
@@ -22,7 +24,7 @@ public class MusicShopWithEnum {
      * Adds entry of next instrument type
      * @param instrument    type of musicalInstrument to be added
      */
-    public void addInstrumentToList(MusicalInstrument instrument) {
+    public void addInstrumentToList(TypesOfInstruments instrument) {
         instrumentsList.add(instrument);
     }
 
@@ -32,7 +34,7 @@ public class MusicShopWithEnum {
     * @param order      order with entries: string name of instrument and its number
     * @return           list of prepared instruments
     */
-    public List <MusicalInstrument> prepareInstruments(Map<String, Integer> order)
+    public List <TypesOfInstruments> prepareInstruments(Map<String, Integer> order)
             throws WrongInstrumentNameException, WrongInstrumentNumberException {
         checkOrder(order);
         checkOnBalances(order);
@@ -60,30 +62,31 @@ public class MusicShopWithEnum {
     private void checkOnBalances(Map<String, Integer> order) {
 
         for (Map.Entry<String, Integer> orderEntry : order.entrySet()) {
-            String instrumentType = orderEntry.getKey();
+            String orderedInstrument = orderEntry.getKey();
             Integer numberOfOrderedInstruments = orderEntry.getValue();
             int numberOfInstrumentsInShop = 0;
-            for (MusicalInstrument instrument : instrumentsList) {
-                if (instrument.getType().equals(instrumentType)) numberOfInstrumentsInShop++;
+            for (TypesOfInstruments instrument : instrumentsList) {
+                if (instrument.toString().equalsIgnoreCase(orderedInstrument))
+                    numberOfInstrumentsInShop++;
             }
             if (numberOfInstrumentsInShop < numberOfOrderedInstruments) {
-                throw new IllegalArgumentException("There's not enough " + instrumentType +"s!");
+                throw new IllegalArgumentException("There's not enough " + orderedInstrument +"s!");
             }
         }
     }
 
     // Creates resulting list of prepared instruments
-    private List<MusicalInstrument> createListOfPreparedInstuments(Map<String, Integer> order) {
+    private List<TypesOfInstruments> createListOfPreparedInstuments(Map<String, Integer> order) {
 
-        List<MusicalInstrument> resultList = new ArrayList<>();
+        List<TypesOfInstruments> resultList = new ArrayList<>();
         for (Map.Entry<String, Integer> orderEntry : order.entrySet()) {
-            String instrumentType = orderEntry.getKey();
+            String orderedInstrument = orderEntry.getKey();
             Integer numberOfOrderedInstruments = orderEntry.getValue();
             int numberOfInstrumentsRemoved = 0;
-            Iterator<MusicalInstrument> iterator = instrumentsList.iterator();
+            Iterator<TypesOfInstruments> iterator = instrumentsList.iterator();
             while (iterator.hasNext()) {
-                MusicalInstrument instrument = iterator.next();
-                if (instrument.getType().equals(instrumentType) &&
+                TypesOfInstruments instrument = iterator.next();
+                if (instrument.toString().equalsIgnoreCase(orderedInstrument) &&
                         numberOfOrderedInstruments > numberOfInstrumentsRemoved) {
                     resultList.add(instrument);
                     iterator.remove();

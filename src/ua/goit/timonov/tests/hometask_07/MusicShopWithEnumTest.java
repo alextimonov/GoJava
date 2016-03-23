@@ -3,6 +3,7 @@ package ua.goit.timonov.tests.hometask_07;
 import org.junit.Test;
 import ua.goit.timonov.hometask_03.musicalinstruments.*;
 import ua.goit.timonov.hometask_07.MusicShopWithEnum;
+import ua.goit.timonov.hometask_07.TypesOfInstruments;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,24 +25,24 @@ public class MusicShopWithEnumTest {
         order.put("piano", 1);
         order.put("guitar", 2);
         order.put("trumpet", 1);
-        List<MusicalInstrument> expected = new ArrayList<MusicalInstrument>();
-        expected.add(new Piano());
-        expected.add(new Trumpet());
-        expected.add(new Guitar());
-        expected.add(new Guitar());
-        List<MusicalInstrument> boughtInstruments = shop.prepareInstruments(order);
+        List<TypesOfInstruments> expected = new ArrayList<TypesOfInstruments>();
+        expected.add(TypesOfInstruments.PIANO);
+        expected.add(TypesOfInstruments.TRUMPET);
+        expected.add(TypesOfInstruments.GUITAR);
+        expected.add(TypesOfInstruments.GUITAR);
+        List<TypesOfInstruments> boughtInstruments = shop.prepareInstruments(order);
         assertEquals(expected, boughtInstruments);
     }
 
     private void createListOfInstrumentsInShop(int nPianos, int nGuitars,  int nTrumpets) {
         for (int i = 0; i < nPianos ; i++) {
-            shop.addInstrumentToList(new Piano());
+            shop.addInstrumentToList(TypesOfInstruments.PIANO);
         }
         for (int i = 0; i < nGuitars ; i++) {
-            shop.addInstrumentToList(new Guitar());
+            shop.addInstrumentToList(TypesOfInstruments.GUITAR);
         }
         for (int i = 0; i < nTrumpets ; i++) {
-            shop.addInstrumentToList(new Trumpet());
+            shop.addInstrumentToList(TypesOfInstruments.TRUMPET);
         }
     }
 
@@ -50,9 +51,9 @@ public class MusicShopWithEnumTest {
         createListOfInstrumentsInShop(1, 4, 2);
         Map<String, Integer> order = new HashMap<>();
         order.put("piano", 1);
-        List<MusicalInstrument> expected = new ArrayList<MusicalInstrument>();
-        expected.add(new Piano());
-        List<MusicalInstrument> boughtInstruments = shop.prepareInstruments(order);
+        List<TypesOfInstruments> expected = new ArrayList<TypesOfInstruments>();
+        expected.add(TypesOfInstruments.PIANO);
+        List<TypesOfInstruments> boughtInstruments = shop.prepareInstruments(order);
         assertEquals(expected, boughtInstruments);
     }
 
@@ -63,12 +64,12 @@ public class MusicShopWithEnumTest {
         order.put("piano", 1);
         order.put("guitar", 2);
         order.put("trumpet", 1);
-        List<MusicalInstrument> expected = new ArrayList<MusicalInstrument>();
-        expected.add(new Piano());
-        expected.add(new Trumpet());
-        expected.add(new Guitar());
-        expected.add(new Guitar());
-        List<MusicalInstrument> boughtInstruments = shop.prepareInstruments(order);
+        List<TypesOfInstruments> expected = new ArrayList<TypesOfInstruments>();
+        expected.add(TypesOfInstruments.PIANO);
+        expected.add(TypesOfInstruments.TRUMPET);
+        expected.add(TypesOfInstruments.GUITAR);
+        expected.add(TypesOfInstruments.GUITAR);
+        List<TypesOfInstruments> boughtInstruments = shop.prepareInstruments(order);
         assertEquals(expected, boughtInstruments);
     }
 
@@ -78,9 +79,9 @@ public class MusicShopWithEnumTest {
         Map<String, Integer> order = new HashMap<>();
         order.put("piano", 2);
         order.put("guitar", 3);
-        List<MusicalInstrument> expected = new ArrayList<MusicalInstrument>();
-        expected.add(new Trumpet());
-        List<MusicalInstrument> boughtInstruments = shop.prepareInstruments(order);
+        List<TypesOfInstruments> expected = new ArrayList<TypesOfInstruments>();
+        expected.add(TypesOfInstruments.TRUMPET);
+        List<TypesOfInstruments> boughtInstruments = shop.prepareInstruments(order);
         assertEquals(expected, boughtInstruments);
     }
 
@@ -90,9 +91,9 @@ public class MusicShopWithEnumTest {
         Map<String, Integer> order = new HashMap<>();
         order.put("pianino", 2);
         order.put("Guitar", 3);
-        List<MusicalInstrument> expected = new ArrayList<MusicalInstrument>();
-        expected.add(new Trumpet());
-        List<MusicalInstrument> boughtInstruments = shop.prepareInstruments(order);
+        List<TypesOfInstruments> expected = new ArrayList<TypesOfInstruments>();
+        expected.add(TypesOfInstruments.TRUMPET);
+        List<TypesOfInstruments> boughtInstruments = shop.prepareInstruments(order);
         assertEquals(expected, boughtInstruments);
     }
 
@@ -103,9 +104,9 @@ public class MusicShopWithEnumTest {
         order.put("piano", 1);
         order.put("guitar", 0);
         order.put("trumpet", 1);
-        List<MusicalInstrument> expected = new ArrayList<MusicalInstrument>();
-        expected.add(new Trumpet());
-        List<MusicalInstrument> boughtInstruments = shop.prepareInstruments(order);
+        List<TypesOfInstruments> expected = new ArrayList<TypesOfInstruments>();
+        expected.add(TypesOfInstruments.TRUMPET);
+        List<TypesOfInstruments> boughtInstruments = shop.prepareInstruments(order);
         assertEquals(expected, boughtInstruments);
     }
 }

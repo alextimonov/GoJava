@@ -10,7 +10,7 @@ import java.util.Map;
 */
 public class MusicShop {
     /* String names of stored instruments.
-     * It's an example of hard code. Will replaced with enum */
+     * It's an example of hard code. Will be replaced with enum of instrument types */
     public static final String[] INSTRUMENT_NAMES = {"piano", "guitar", "trumpet"};
 
     /* List of musical instruments in the shop */

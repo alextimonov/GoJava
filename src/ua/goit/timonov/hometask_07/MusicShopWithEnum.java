@@ -1,23 +1,20 @@
-package ua.goit.timonov.hometask_03.musicalinstruments;
+package ua.goit.timonov.hometask_07;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import ua.goit.timonov.hometask_03.musicalinstruments.*;
 
 /**
 * Class MusicShopWithEnum provides musical shop with different types of musical instruments.
 */
-public class MusicShop {
-    /* String names of stored instruments.
-     * It's an example of hard code. Will replaced with enum */
-    public static final String[] INSTRUMENT_NAMES = {"piano", "guitar", "trumpet"};
-
+public class MusicShopWithEnum {
     /* List of musical instruments in the shop */
     private List <MusicalInstrument> instrumentsList;
 
     /* Default constructor */
-    public MusicShop() {
+    public MusicShopWithEnum() {
         instrumentsList = new ArrayList<>();
     }
 
@@ -102,8 +99,9 @@ public class MusicShop {
     private void checkInstrumentName(String instrument) throws WrongInstrumentNameException {
         boolean foundProperName = false;
         int i = 0;
-        while (!foundProperName && i < INSTRUMENT_NAMES.length) {
-            if (instrument == INSTRUMENT_NAMES[i++]) {
+        TypesOfInstruments types[] = TypesOfInstruments.values();
+        while (!foundProperName && i < types.length) {
+            if (instrument.equalsIgnoreCase(types[i++].toString())) {
                 foundProperName = true;
             }
         }

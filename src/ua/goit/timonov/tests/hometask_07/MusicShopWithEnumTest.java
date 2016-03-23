@@ -1,20 +1,21 @@
-package ua.goit.timonov.tests.hometask_03;
+package ua.goit.timonov.tests.hometask_07;
 
-import org.junit.Before;
 import org.junit.Test;
 import ua.goit.timonov.hometask_03.musicalinstruments.*;
+import ua.goit.timonov.hometask_07.MusicShopWithEnum;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Testing class for class MusicShopWithEnum
  */
-public class MusicShopTest {
-    MusicShop shop = new MusicShop();
+public class MusicShopWithEnumTest {
+    MusicShopWithEnum shop = new MusicShopWithEnum();
 
     @Test
     public void testPrepareInstrumentsNormal_1() throws WrongInstrumentNameException, WrongInstrumentNumberException {

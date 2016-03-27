@@ -7,6 +7,10 @@ public class Directory {
     private String dirName;
     private List<File> fileList;
 
+    public List<File> getFileList() {
+        return fileList;
+    }
+
     public Directory(String dirName) {
         this.dirName = dirName;
         fileList = new ArrayList<>();
@@ -17,9 +21,10 @@ public class Directory {
     }
 
     public void printFiles() {
-        System.out.println("DIRECTORY " + dirName + " contains next files:");
         for (File file : fileList) {
-            file.printFileName();
+            file.printFileData();
         }
     }
+
+
 }

@@ -1,6 +1,6 @@
 package ua.goit.timonov.hometask_03.filesystem;
 
-public class File {
+public class File implements Comparable {
     protected String fileName;
     protected String fileExtension;
 
@@ -14,12 +14,31 @@ public class File {
         this.fileExtension = extension;
     }
 
-    public void printFileName() {
-        if (fileExtension == "") {
+    public void printFileData() {
+        String nameOfClass = this.getClass().getSimpleName();
+        System.out.printf("|  %-12s  |  %12s.%3s   |", nameOfClass, fileName, fileExtension);
+        System.out.println();
+       /* if (fileExtension == "") {
             System.out.println(fileName);
         }
         else {
             System.out.println(fileName + "." + fileExtension);
-        }
+        }*/
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("File{");
+        sb.append("fileName='").append(fileName).append('\'');
+        sb.append(", fileExtension='").append(fileExtension).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Object otherFile) {
+        if (!(otherFile instanceof File))
+            throw new IllegalArgumentException();
+        return this.fileName.compareTo(((File) otherFile).fileName);
     }
 }

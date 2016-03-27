@@ -71,12 +71,13 @@ public abstract class AbstractSortTest {
         makeTrueTest(actual, expected);
     }
 
+    // Failing test: expected array must be {1, 0, 2, 3, 4, 5}
     @Test
     public void testSortFail_1() {
         int[] actual =   {5, 4, 3, 2, 1, 0};
         int[] expected = {1, 0, 2, 3, 4, 5};
-        sortingAlgorithm.sort(actual);   //  fail();
-        makeTrueTest(actual, expected);
+        sortingAlgorithm.sort(actual);
+        fail();
     }
 
     private void makeTrueTest(int[] actual, int[] expected) {

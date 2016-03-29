@@ -8,13 +8,22 @@ import java.util.List;
  * The class with method to sort the array of integer numbers.
  * Implements method sort(int[] array) with implementation of sortMerge
  */
-public class SortMergeImpl <T extends Number> implements SortingAlgorithm {
+public class SortMergeImpl <T> implements SortingAlgorithm {
 
     /** List of objects to sort */
     private List<T> list = new ArrayList<T>();
 
+    /** Comparator that defines way of comparison */
+    private Comparator<T> comparator;
+
     /** Default constructor  */
     public SortMergeImpl() {
+    }
+
+    /** Constructor with given comparator  */
+    public SortMergeImpl(Comparator<T> comparator) {
+        super();
+        this.comparator = comparator;
     }
 
     /** Constructor with ready list */
@@ -51,21 +60,11 @@ public class SortMergeImpl <T extends Number> implements SortingAlgorithm {
             T elem = (T) new Integer(array[i]);
             list.add(elem);
         }
-
-        Comparator<T> comparator = new Comparator<T>() {
-            @Override
-            public int compare(T o1, T o2) {
-                return 0;
-            }
-
-            @Override
-            public boolean equals(Object obj) {
-                return false;
-            }
-        };
         sort(list, comparator);
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = (Integer) list.get(i);
+        }
     }
-
 
 //    @Override
     public void sort(List<T> list, Comparator<T> comparator) {
@@ -90,13 +89,11 @@ public class SortMergeImpl <T extends Number> implements SortingAlgorithm {
     }
 
     // Merges two sorted parts of list (left & right) to one sorted list
-    protected  <T extends Number> void mergeLists(List<T> list1, int leftPtr, int rightPtr,
+    protected  <T> void mergeLists(List<T> list, int leftPtr, int rightPtr,
                                                   int rightBound, Comparator<T> comparator) {
         int nElements = rightBound - leftPtr + 1;
         int leftStart = leftPtr;
         List<T> work = new ArrayList<T>();
-        List<T> list = new ArrayList<T>();
-        list = list1;
         int leftBound = rightPtr-1;
         int i = 0;
         while (leftPtr <= leftBound && rightPtr <= rightBound) {

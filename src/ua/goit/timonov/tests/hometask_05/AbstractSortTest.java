@@ -26,13 +26,20 @@ public abstract class AbstractSortTest {
     public void testSortNormal_2() {
         int[] actual =   {5, 4, 3, 2, 1, 0};
         int[] expected = {0, 1, 2, 3, 4, 5};
-        sortingAlgorithm.sort(actual);
+        makeTrueTest(actual, expected);
     }
 
     @Test
     public void testSortNormal_3() {
         int[] actual =   {5, 4, 3, 5, 2, 3, 1, 0};
         int[] expected = {0, 1, 2, 3, 3, 4, 5, 5};
+        makeTrueTest(actual, expected);
+    }
+
+    @Test
+    public void testSortNormal_4() {
+        int[] actual =   {5, 4, 3, 5, 2, 3, 1, 0, 3, 2, 4, 5, 6, 0, 1};
+        int[] expected = {0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6};
         makeTrueTest(actual, expected);
     }
 
@@ -69,15 +76,6 @@ public abstract class AbstractSortTest {
         int[] actual = new int[] {};
         int[] expected = new int[] {};
         makeTrueTest(actual, expected);
-    }
-
-    // Failing test: expected array must be {1, 0, 2, 3, 4, 5}
-    @Test
-    public void testSortFail_1() {
-        int[] actual =   {5, 4, 3, 2, 1, 0};
-        int[] expected = {1, 0, 2, 3, 4, 5};
-        sortingAlgorithm.sort(actual);
-        fail();
     }
 
     private void makeTrueTest(int[] actual, int[] expected) {

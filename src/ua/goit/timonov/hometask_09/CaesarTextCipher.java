@@ -1,55 +1,50 @@
 package ua.goit.timonov.hometask_09;
 
 /**
- * Provides ciphering and unciphering text with Caesar algorithm
+ * Provides encryption and decryption of text by Caesar algorithm
  */
 public class CaesarTextCipher {
-
-    public static final int NUMBER_OF_LETTERS = 26;
-    public static final int INT_OF_CHAR_A_LOWER_CASE = (int) 'a';
+    /**
+     * encrypts given String by Caesar algorithm
+     * @param inputText     given text
+     * @param key           number of chars to shift
+     * @return              encrypted text
+     */
+    public String encrypt(String inputText, int key) {
+        checkArgument(inputText);
+        return shiftText(inputText, key);
+    }
 
     /**
-     * 
-     * @param inputText
-     * @param key
-     * @return
+     * decrypts given String by Caesar algorithm
+     * @param inputText     given encrypted text
+     * @param key           number of chars to shift
+     * @return              decrypted text
      */
-    public String encode(String inputText, int key) {
+    public String decrypt(String inputText, int key) {
+        checkArgument(inputText);
+        return shiftText(inputText, -key);
+    }
+
+    // checks given string if it points to null
+    private void checkArgument(String inputText) {
+        if (inputText == null) throw new NullPointerException("Given string points to null!");
+    }
+
+    // shifts chars in the inputText on given number of chars (key)
+    private String shiftText(String inputText, int key) {
         char[] charArray = inputText.toCharArray();
         StringBuilder builder = new StringBuilder();
         for (char ch : charArray) {
-            int ciphered = ((int) ch + key - INT_OF_CHAR_A_LOWER_CASE) % NUMBER_OF_LETTERS + INT_OF_CHAR_A_LOWER_CASE;
-            ch = (char) ciphered;
+            ch = shiftChar(ch, key);
             builder.append(ch);
         }
         return builder.toString();
     }
 
-    /**
-     *
-     * @param inputText
-     * @param key
-     * @return
-     */
-    public String decode(String inputText, int key) {
-        char[] charArray = inputText.toCharArray();
-        StringBuilder builder = new StringBuilder();
-        for (char ch : charArray) {
-            int unciphered = ((int) ch - key - INT_OF_CHAR_A_LOWER_CASE + NUMBER_OF_LETTERS) %
-                    NUMBER_OF_LETTERS + INT_OF_CHAR_A_LOWER_CASE;
-            ch = (char) unciphered;
-            builder.append(ch);
-        }
-        return builder.toString();
-    }
-
-    public static void main(String[] args) {
-        CaesarTextCipher caesarTextCipher = new CaesarTextCipher();
-        String text = "abcdefuvwxyz";
-        System.out.println(text);
-        String encoded = caesarTextCipher.encode(text, 5);
-        System.out.println(encoded);
-        String decoded = caesarTextCipher.decode(encoded, 5);
-        System.out.println(decoded);
+    // shifts char in the inputText on given number of chars (key)
+    private char shiftChar(char ch, int key) {
+        int ciphered = ((int) ch + key + Character.MAX_VALUE) % Character.MAX_VALUE;
+        return (char) ciphered;
     }
 }

@@ -1,5 +1,7 @@
 package ua.goit.timonov.hometask_03.filesystem;
 
+import ua.goit.timonov.hometask_08.PrintFileData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +23,9 @@ public class Directory {
     }
 
     public void printFiles() {
+        PrintFileData printFileData = new PrintFileData();
         for (File file : fileList) {
-            file.printFileData();
+            System.out.println(printFileData.print(file));
         }
     }
-
-
 }

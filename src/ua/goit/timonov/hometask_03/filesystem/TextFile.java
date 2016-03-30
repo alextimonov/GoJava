@@ -6,4 +6,12 @@ public class TextFile extends File {
         super(fileName);
         fileExtension = "txt";
     }
+
+    @Override
+    /**
+     * @return      Name of class
+     */
+    public String getClassName() {
+        return "TextFile";
+    }
 }

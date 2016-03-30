@@ -9,7 +9,7 @@ import java.util.Comparator;
 /**
  * Created by Alex on 29.03.2016.
  */
-public class SortMergeImplTest <T extends Number> extends AbstractSortTest {
+public class SortMergeImplTestInt extends AbstractSortTest {
     @Before
     public void setUp() {
         Comparator<Integer> comparator = (value1, value2) -> value1 - value2;

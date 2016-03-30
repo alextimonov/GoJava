@@ -9,10 +9,6 @@ import java.util.List;
  * Implements method sort(int[] array) with implementation of sortMerge
  */
 public class SortMergeImpl <T> implements SortingAlgorithm {
-
-    /** List of objects to sort */
-    private List<T> list = new ArrayList<T>();
-
     /** Comparator that defines way of comparison */
     private Comparator<T> comparator;
 
@@ -26,22 +22,18 @@ public class SortMergeImpl <T> implements SortingAlgorithm {
         this.comparator = comparator;
     }
 
-    /** Constructor with ready list */
-    public SortMergeImpl(List<T> list) {
-        this.list = list;
-    }
-
-    /** =============== Getter & Setter ================= */
-    public List<T> getList() {
-        return list;
-    }
-
-    public void setList(List<T> list) {
-        this.list = list;
+    // Checks given array if it points to null or if it's empty
+    private static void checkArguments(int[] array) {
+        if (array == null) {
+            throw new NullPointerException("Null is given as argument!");
+        }
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Empty array is given as argument!");
+        }
     }
 
     // Checks given list if it points to null or if it's empty
-    private <T> void checkArguments(List<T> list) {
+    private static <T> void checkArguments(List<T> list) {
         if (list == null) {
             throw new NullPointerException("Null is given as argument!");
         }
@@ -51,11 +43,13 @@ public class SortMergeImpl <T> implements SortingAlgorithm {
     }
 
     /**
-     * Overridden method sort - merge sort implementation
+     * Overridden method sort - merge sort implementation for int array
+     * @param array     Int array to be sorted
      */
-//    @Override
+    @Override
     public void sort(int[] array) {
-        // TODO check array - is it relevant argument
+        checkArguments(array);
+        List<T> list = new ArrayList<>();
         for (int i = 0; i < array.length ; i++) {
             T elem = (T) new Integer(array[i]);
             list.add(elem);
@@ -66,24 +60,26 @@ public class SortMergeImpl <T> implements SortingAlgorithm {
         }
     }
 
-//    @Override
+    /**
+     * @param list              List of generic objects to be sorted
+     * @param comparator        Given comparator to compare two generic objects
+     */
     public void sort(List<T> list, Comparator<T> comparator) {
         checkArguments(list);
-        setList(list);
-        sortMerge(0, list.size()-1, comparator);
+        sortMerge(list, 0, list.size()-1, comparator);
     }
 
     /**
      * Implementation of sorting list with algo sortMerge
      */
-    private void sortMerge(int leftBound, int rightBound, Comparator<T> comparator) {
+    private void sortMerge(List<T> list, int leftBound, int rightBound, Comparator<T> comparator) {
         if (leftBound == rightBound) {
             return;
         }
         else {
             int middle = (rightBound + leftBound) / 2;
-            sortMerge(leftBound, middle, comparator);
-            sortMerge(middle+1, rightBound, comparator);
+            sortMerge(list, leftBound, middle, comparator);
+            sortMerge(list, middle+1, rightBound, comparator);
             mergeLists(list, leftBound, middle+1, rightBound, comparator);
         }
     }

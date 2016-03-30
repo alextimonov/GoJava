@@ -6,4 +6,12 @@ public class AudioFile extends File {
         super(fileName);
         fileExtension = "mp3";
     }
+
+    @Override
+    /**
+     * @return      Name of class
+     */
+    public String getClassName() {
+        return "AudioFile";
+    }
 }

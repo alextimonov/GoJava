@@ -1,5 +1,7 @@
 package ua.goit.timonov.hometask_03.filesystem;
 
+import ua.goit.timonov.hometask_08.PrintDirectoryContent;
+
 public class FileSystemRunner {
     public static void main(String[] args) {
         Directory directory = new Directory("My directory");
@@ -8,6 +10,6 @@ public class FileSystemRunner {
         directory.addFile(new AudioFile("song"));
         directory.addFile(new ImageFile("picture"));
         directory.addFile(new File("suspicious"));
-        directory.printFiles();
+        PrintDirectoryContent.makeListOfStringsToPrint(directory);
     }
 }

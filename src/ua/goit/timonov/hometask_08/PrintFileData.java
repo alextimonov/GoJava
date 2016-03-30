@@ -3,7 +3,7 @@ package ua.goit.timonov.hometask_08;
 import ua.goit.timonov.hometask_03.filesystem.File;
 
 /**
- * Prints data of File in Table
+ * Makes the String to print File data in table
  */
 public class PrintFileData {
     public static final int N_CHARS_IN_COLUMN1 = 17;
@@ -16,7 +16,8 @@ public class PrintFileData {
      * @param file      File, whose data to be printed
      * @return          String with file data
      */
-    public String print(File file) {
+    public static String print(File file) {
+        checkAgrument(file);
         final StringBuilder sb = new StringBuilder();
         sb
                 .append(BORDER)
@@ -41,4 +42,7 @@ public class PrintFileData {
         return sb.toString();
     }
 
+    private static void checkAgrument(File file) {
+        if (file == null) throw new NullPointerException("File points to null!");
+    }
 }

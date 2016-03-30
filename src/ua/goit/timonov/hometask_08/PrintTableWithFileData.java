@@ -12,6 +12,7 @@ public class PrintTableWithFileData {
     /**
      * creates header of table with given title
      * @param message       given title of table
+     * @return              string with header of table
      */
     public static String tableHeader(String message) {
         int numberOfSpaces = N_OF_HYPHENS_IN_TABLE - N_BORDERS - message.length() - 1;
@@ -29,6 +30,7 @@ public class PrintTableWithFileData {
 
     /**
      * creates header of table columns
+     * @return          string with header of table columns
      */
     public static String tableColumnNames() {
         final StringBuilder sb = new StringBuilder();
@@ -45,6 +47,7 @@ public class PrintTableWithFileData {
 
     /**
      * prints line of hyphens
+     * @return          string with hyphens
      */
     public static String printHyphens() {
         final StringBuilder sb = new StringBuilder("");

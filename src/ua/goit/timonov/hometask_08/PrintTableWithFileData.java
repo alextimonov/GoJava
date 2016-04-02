@@ -17,10 +17,7 @@ public class PrintTableWithFileData {
     public static String tableHeader(String message) {
         int numberOfSpaces = N_OF_HYPHENS_IN_TABLE - N_BORDERS - message.length() - 1;
         final StringBuilder sb = new StringBuilder();
-        sb
-                .append(BORDER)
-                .append(SPACE)
-                .append(message);
+        sb.append(BORDER).append(SPACE).append(message);
         for (int i = 0; i < numberOfSpaces; i++) {
             sb.append(SPACE);
         }
@@ -34,14 +31,8 @@ public class PrintTableWithFileData {
      */
     public static String tableColumnNames() {
         final StringBuilder sb = new StringBuilder();
-        sb
-                .append(BORDER)
-                .append(" Name of class  ")
-                .append(BORDER)
-                .append(SPACE)
-                .append("Filename.Extnsn")
-                .append("     ")
-                .append(BORDER);
+        sb.append(BORDER).append(" Name of class  ").append(BORDER);
+        sb.append(SPACE).append("Filename.Extnsn").append("     ").append(BORDER);
         return sb.toString();
     }
 

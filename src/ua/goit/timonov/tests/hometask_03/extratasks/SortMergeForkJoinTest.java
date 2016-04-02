@@ -2,7 +2,7 @@ package ua.goit.timonov.tests.hometask_03.extratasks;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.goit.timonov.hometask_03.extratasks.SortMergeForkJoin;
+import ua.goit.timonov.extratasks.SortMergeForkJoin;
 
 import static org.junit.Assert.*;
 import java.util.concurrent.ForkJoinPool;

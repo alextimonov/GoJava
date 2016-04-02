@@ -1,7 +1,6 @@
-package ua.goit.timonov.hometask_03.extratasks;
+package ua.goit.timonov.extratasks;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 

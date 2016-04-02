@@ -8,7 +8,6 @@ import java.io.*;
  * Provides work with encrypted text file: read and write
  */
 public class ReadWriteEncryptedTextToFile {
-    /* object of class CaeserTextCipher */
     private CaesarTextCipher coder = new CaesarTextCipher();
 
     /**

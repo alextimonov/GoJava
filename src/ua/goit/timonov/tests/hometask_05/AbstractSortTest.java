@@ -1,7 +1,7 @@
 package ua.goit.timonov.tests.hometask_05;
 
 import org.junit.Test;
-import ua.goit.timonov.hometask_03.extratasks.SortingAlgorithm;
+import ua.goit.timonov.extratasks.SortingAlgorithm;
 
 import static org.junit.Assert.*;
 

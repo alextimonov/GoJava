@@ -16,7 +16,7 @@ public class File {
     /**
      * @return      Name of class
      */
-    public String getClassName() {
+    public String getFileType() {
         return "File";
     }
 

@@ -19,20 +19,13 @@ public class PrintFileData {
     public static String print(File file) {
         checkAgrument(file);
         final StringBuilder sb = new StringBuilder();
-        sb
-                .append(BORDER)
-                .append(SPACE)
-                .append(file.getClassName());
-        int numberOfSpaces = N_CHARS_IN_COLUMN1 - N_BORDERS - file.getClassName().length();
+        sb.append(BORDER).append(SPACE).append(file.getFileType());
+        int numberOfSpaces = N_CHARS_IN_COLUMN1 - N_BORDERS - file.getFileType().length();
         for (int i = 0; i < numberOfSpaces ; i++) {
             sb.append(SPACE);
         }
-        sb
-                .append(BORDER)
-                .append(SPACE)
-                .append(file.getFileName())
-                .append(".")
-                .append(file.getFileExtension());
+        sb.append(BORDER).append(SPACE).append(file.getFileName());
+        sb.append(".").append(file.getFileExtension());
         numberOfSpaces = N_CHARS_IN_COLUMN2 - N_BORDERS - file.getFileName().length() -
                 file.getFileExtension().length();
         for (int i = 0; i < numberOfSpaces ; i++) {

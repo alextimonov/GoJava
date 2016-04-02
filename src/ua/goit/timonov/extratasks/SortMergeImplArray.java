@@ -1,8 +1,4 @@
-package ua.goit.timonov.hometask_03.extratasks;
-
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+package ua.goit.timonov.extratasks;
 
 /**
  * The class with method to sort the array of integer numbers.

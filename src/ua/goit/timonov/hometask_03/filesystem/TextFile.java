@@ -7,11 +7,12 @@ public class TextFile extends File {
         fileExtension = "txt";
     }
 
-    @Override
+
     /**
      * @return      Name of class
      */
-    public String getClassName() {
+    @Override
+    public String getFileType() {
         return "TextFile";
     }
 }

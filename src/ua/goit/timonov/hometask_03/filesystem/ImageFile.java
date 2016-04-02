@@ -6,11 +6,12 @@ public class ImageFile extends File {
         fileExtension = "png";
     }
 
-    @Override
+
     /**
      * @return      Name of class
      */
-    public String getClassName() {
+    @Override
+    public String getFileType() {
         return "ImageFile";
     }
 }

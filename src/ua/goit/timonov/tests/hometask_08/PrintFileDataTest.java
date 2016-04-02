@@ -57,7 +57,5 @@ public class PrintFileDataTest {
     public void testPrintAbnormal_1() {
         file = null;
         String actual = PrintFileData.print(file);
-        String expected = null;
-        assertEquals(expected, actual);
     }
 }

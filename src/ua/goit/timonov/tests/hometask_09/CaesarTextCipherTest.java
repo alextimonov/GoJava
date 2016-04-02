@@ -104,7 +104,5 @@ public class CaesarTextCipherTest {
     public void testEncryptAbnormal_1() {
         String initial = null;
         String actual = encoder.encrypt(initial, 5);
-        String expected = null;
-        assertEquals(expected, actual);
     }
 }

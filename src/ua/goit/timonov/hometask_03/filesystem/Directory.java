@@ -1,6 +1,6 @@
 package ua.goit.timonov.hometask_03.filesystem;
 
-import ua.goit.timonov.hometask_03.extratasks.SortMergeImpl;
+import ua.goit.timonov.extratasks.SortMergeImpl;
 
 import java.util.ArrayList;
 import java.util.Comparator;

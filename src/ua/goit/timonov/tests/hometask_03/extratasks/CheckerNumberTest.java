@@ -3,7 +3,7 @@ package ua.goit.timonov.tests.hometask_03.extratasks;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import ua.goit.timonov.hometask_03.extratasks.CheckerNumber;
+import ua.goit.timonov.extratasks.CheckerNumber;
 
 import static org.junit.Assert.*;
 

@@ -16,7 +16,7 @@ public class ReadWriteEncryptedTextToFile {
      * @param key               encryption key
      * @return                  text that being read from file
      */
-    public String readTextFromFile(String fileName, int key) throws IOException {
+    public String readTextFromFile(String fileName, int key) {
         checkString(fileName);
         StringBuilder readText = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -26,10 +26,10 @@ public class ReadWriteEncryptedTextToFile {
             }
         }
         catch (FileNotFoundException e) {
-            throw new FileNotFoundException("Can't find file " + fileName);
+            throw new RuntimeException("Can't find file " + fileName, e);
         }
         catch (IOException e) {
-            throw new IOException("IO error while reading file " + fileName);
+            throw new RuntimeException("IO error while reading file " + fileName, e);
         }
         return coder.decrypt(readText.toString(), key);
     }
@@ -40,17 +40,17 @@ public class ReadWriteEncryptedTextToFile {
      * @param givenText             text for writing to file
      * @param key                   encryption key
      */
-    public void writeTextToFile(String fileName, String givenText, int key) throws IOException {
+    public void writeTextToFile(String fileName, String givenText, int key) {
         checkString(fileName);
         checkString(givenText);
         try (BufferedWriter out = new BufferedWriter(new FileWriter(fileName))) {
             out.write(coder.encrypt(givenText, key));
         }
         catch (FileNotFoundException e) {
-            throw new FileNotFoundException("Can't find file " + fileName);
+            throw new RuntimeException("Can't find file " + fileName, e);
         }
         catch (IOException e) {
-            throw new IOException("IO error while writing file " + fileName);
+            throw new RuntimeException("IO error while writing file " + fileName, e);
         }
     }
 

@@ -17,34 +17,35 @@ import static org.junit.Assert.*;
 public class CaesarTextCipherParameterizedTest {
     private String initialText;
     private int key;
-    private String expected;
+    private String expectedEncrypt;
+    private String expectedDecrypt;
 
-    @Parameterized.Parameters(name = "{index}: result of encrypting \"{0}\" by key {1} is \"{2}\"")
+    @Parameterized.Parameters(name = "{index}: encrypted string \"{0}\" by key {1} is \"{2}\", decrypted is \"{3}\"")
     public static Iterable<Object[]> getParameterizedData() {
         return Arrays.asList(new Object[][] {
-                {"abc", 3, "def"},
-                {"FGH", -5, "ABC"},
-                {"qwerty", 0, "qwerty"},
-                {"UVWXYZ", 12, "abcdef"},
-                {"", 5, ""}
+                {"abc", 3, "def", "^_`"},
+                {"FGH", -5, "ABC", "KLM"},
+                {"qwerty", 0, "qwerty", "qwerty"},
+                {"UVWXYZ", 12, "abcdef", "IJKLMN"},
+                {"", 5, "", ""}
         });
     }
 
-    public CaesarTextCipherParameterizedTest(String initialText, int key, String expected) {
+    public CaesarTextCipherParameterizedTest(String initialText, int key, String expectedEncrypt,
+                                             String expectedDecrypt) {
         this.initialText = initialText;
         this.key = key;
-        this.expected = expected;
+        this.expectedEncrypt = expectedEncrypt;
+        this.expectedDecrypt = expectedDecrypt;
     }
 
     @Test
     public void testEncrypt() {
-        assertEquals(expected, new CaesarTextCipher().encrypt(initialText, key));
+        assertEquals(expectedEncrypt, new CaesarTextCipher().encrypt(initialText, key));
     }
 
-    @Test (expected = NullPointerException.class)
-    public void testEncryptAbnormal_1() {
-        CaesarTextCipher encoder = new CaesarTextCipher();
-        String initial = null;
-        String actual = encoder.encrypt(initial, 5);
+    @Test
+    public void testDecrypt() {
+        assertEquals(expectedDecrypt, new CaesarTextCipher().decrypt(initialText, key));
     }
 }

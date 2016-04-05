@@ -1,9 +1,5 @@
 package ua.goit.timonov.hometask_09;
 
-import com.sun.xml.internal.fastinfoset.util.CharArray;
-
-import java.util.Arrays;
-
 /**
  * Provides encryption and decryption of text by Caesar algorithm
  */
@@ -42,7 +38,7 @@ public class CaesarTextCipher {
         for (int i = 0; i < charArray.length ; i++) {
             shiftedCharArray[i] = shiftChar(charArray[i], key);
         }
-        return new CharArray(shiftedCharArray, 0, shiftedCharArray.length, false).toString();
+        return new String(shiftedCharArray);
     }
 
     // shifts char in the inputText on given number of chars (key)

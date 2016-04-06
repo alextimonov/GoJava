@@ -47,6 +47,9 @@ public class SortMergeForkJoin extends RecursiveAction implements Runnable, Sort
         this.array = array;
     }
 
+    /**
+     * Overridden method sort - merge sort implementation
+     */
     @Override
     public void sort(int[] array) {
         setLeftBound(0);
@@ -57,7 +60,7 @@ public class SortMergeForkJoin extends RecursiveAction implements Runnable, Sort
     }
 
     /**
-     * The main computation performed by this task.
+     * The main computation performed by task.
      * Recursive resultless method that can be forked and joined.
      * Sorts array with MergeSort algorithm.
      */
@@ -76,9 +79,12 @@ public class SortMergeForkJoin extends RecursiveAction implements Runnable, Sort
             rightTask.join();
             mergeArrays(array, leftBound, middle+1, rightBound);
         }
-        System.out.println("Compute method was invoked");
     }
 
+    /**
+     * The realisation of main task while usin interface Runnable
+     * Recursive resultless method that sorts array with MergeSort algorithm.
+     */
     @Override
     public void run() {
         if (leftBound == rightBound) {
@@ -90,6 +96,7 @@ public class SortMergeForkJoin extends RecursiveAction implements Runnable, Sort
             SortMergeForkJoin rightTask = new SortMergeForkJoin(middle + 1, rightBound, array);
 //            ExecutorService executorService = new ForkJoinPool();
             ExecutorService executorService = Executors.newFixedThreadPool(N_THREADS);
+//            Results of tests are depending on value of N_THREADS:
             Future futureLeft = executorService.submit(leftTask);
             Future futureRight = executorService.submit(rightTask);
             try {
@@ -101,7 +108,6 @@ public class SortMergeForkJoin extends RecursiveAction implements Runnable, Sort
             }
             mergeArrays(array, leftBound, middle+1, rightBound);
         }
-        System.out.println("Run method was invoked");
     }
 
     // Merges two sorted parts of array (left & right) to one sorted array using method of SortMergeImpl class

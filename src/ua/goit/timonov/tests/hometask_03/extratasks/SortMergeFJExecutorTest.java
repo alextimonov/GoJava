@@ -92,7 +92,6 @@ public class SortMergeFJExecutorTest {
 
     private void makeTrueTest(int[] expected, int[] actual) {
         sortMergeFJ = new SortMergeForkJoin(0, actual.length - 1, actual);
-//        pool.invoke(sortMergeFJ);
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future futureTask = executor.submit(sortMergeFJ);
         try {

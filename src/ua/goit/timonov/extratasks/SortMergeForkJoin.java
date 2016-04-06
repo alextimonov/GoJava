@@ -1,13 +1,14 @@
 package ua.goit.timonov.extratasks;
 
-import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.*;
 
 /**
  * A class with implementation of integer numbers array merge sorting.
  * Uses ForkJoin framework, extends recursive resultless ForkJoinTask
  */
-public class SortMergeForkJoin extends RecursiveAction {
+public class SortMergeForkJoin extends RecursiveAction implements Runnable, SortingAlgorithm {
 
+    public static final int N_THREADS = 2;
     /** int number of array part's left bound to sort  */
     private int leftBound;
     /** int number of array part's right bound to sort */
@@ -15,7 +16,7 @@ public class SortMergeForkJoin extends RecursiveAction {
     /** Array of int numbers to sort */
     private int[] array;
     /** Object of class SortMergeImpl with implementation of ordinary merge sort (without ForkJoin) */
-    SortMergeImplArray sortMergeArray;
+    SortMergeImplArray sortMergeImplArray;
 
     /** Default constructor  */
     public SortMergeForkJoin() {
@@ -23,21 +24,36 @@ public class SortMergeForkJoin extends RecursiveAction {
 
     /** Constructor with given leftBound, rightBound & array */
     public SortMergeForkJoin(int leftBound, int rightBound, int[] array) {
-        sortMergeArray = new SortMergeImplArray(array);
-        checkArguments(array);
+        sortMergeImplArray = new SortMergeImplArray(array);
         this.leftBound = leftBound;
         this.rightBound = rightBound;
         this.array = array;
     }
 
-    // Checks given array if it points to null or if it's empty using method of SortMergeImpl class
-    private void checkArguments(int[] array) {
-//        SortMergeImplArray.checkArguments(array);
-    }
-
-    /** =============== Getter ================= */
+    /** =============== Getters & Setters ================= */
     public int[] getArray() {
         return array;
+    }
+
+    public void setLeftBound(int leftBound) {
+        this.leftBound = leftBound;
+    }
+
+    public void setRightBound(int rightBound) {
+        this.rightBound = rightBound;
+    }
+
+    public void setArray(int[] array) {
+        this.array = array;
+    }
+
+    @Override
+    public void sort(int[] array) {
+        setLeftBound(0);
+        setRightBound(array.length - 1);
+        setArray(array);
+        sortMergeImplArray = new SortMergeImplArray(array);
+        compute();
     }
 
     /**
@@ -60,10 +76,36 @@ public class SortMergeForkJoin extends RecursiveAction {
             rightTask.join();
             mergeArrays(array, leftBound, middle+1, rightBound);
         }
+        System.out.println("Compute method was invoked");
+    }
+
+    @Override
+    public void run() {
+        if (leftBound == rightBound) {
+            return;
+        }
+        else {
+            int middle = (rightBound + leftBound) / 2;
+            SortMergeForkJoin leftTask = new SortMergeForkJoin(leftBound, middle, array);
+            SortMergeForkJoin rightTask = new SortMergeForkJoin(middle + 1, rightBound, array);
+//            ExecutorService executorService = new ForkJoinPool();
+            ExecutorService executorService = Executors.newFixedThreadPool(N_THREADS);
+            Future futureLeft = executorService.submit(leftTask);
+            Future futureRight = executorService.submit(rightTask);
+            try {
+                while (futureLeft.get() != null && futureRight.get() != null) {
+                    //NOP
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+            mergeArrays(array, leftBound, middle+1, rightBound);
+        }
+        System.out.println("Run method was invoked");
     }
 
     // Merges two sorted parts of array (left & right) to one sorted array using method of SortMergeImpl class
     private void mergeArrays(int[] array, int leftBound, int middle, int rightBound) {
-        sortMergeArray.mergeArrays(array, leftBound, middle, rightBound);
+        sortMergeImplArray.mergeArrays(array, leftBound, middle, rightBound);
     }
 }
